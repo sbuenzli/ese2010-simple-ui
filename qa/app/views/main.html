@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<title>#{get 'title' /}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}">
+<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+<script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+
+<h1><a href="@{Application.index}" title="Visit the Knowledge Base's homepage">Basic Knowledge Base</a></h1>
+
+#{if user != null}
+<div class="logout">You're logged in as ${user.getName()} - <a href="@{Secure.logout}">logout</a></div>
+#{/if}
+
+#{if flash.error} <div class="flash_error">${flash.error}</div> #{/if}
+
+#{doLayout /}

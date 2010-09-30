@@ -1,0 +1,7 @@
+1. Explain how a typical HTTP request is processed with the framework (the request lifecycle)
+
+First, the framework's router tries to match any of the routes in qa/conf/routes and applies the first one to match the URL to fetch. The resulting destination is a controller's static method that's then invoked with any parameters extracted during routing. Before that method is executed, there might be @Before methods to initialize data common to all request handling (such as authorization). The controller will then most likely either update the model and redirect (HTTP response 302) or retrieve parts of the model and pass these values to the view to be eventually rendered (HTTP response 200). Source: http://www.playframework.org/documentation/1.0.3/main#request
+
+2. How could you test user interfaces with the testing facilities in play! framework?
+
+Using Selenium (http://seleniumhq.org/) tests for replaying the most important scenarios (including common failure scenarios) starting from a preset database state and verifying that given commands result in the expected results (reached pages, page content, etc.). See qa/test/Application.test.html for an example.

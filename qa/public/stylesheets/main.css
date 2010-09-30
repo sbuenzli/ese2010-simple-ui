@@ -1,0 +1,66 @@
+body {
+	font: 11pt Helvetica, Tahoma;
+}
+
+.logout {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	padding: 5px;
+	color: white;
+	background-color: #88C;
+}
+
+form {
+	margin-bottom: 1em;
+}
+textarea {
+	width: 100%;
+	min-height: 5em;
+}
+
+.question, .answer, .login, form {
+	clear: both;
+}
+
+.question, .answer {
+	border-top: 1px dashed black;
+}
+
+.voteCount, .answerCount {
+	float: left;
+	margin: 2px;
+	padding: 0px 2px;
+	max-width: 80px;
+	text-align: center;
+	color: #666;
+	background-color: #CF8;
+}
+.answerCount {
+	background-color: #FC8;
+}
+.count {
+	font-size: 200%;
+}
+.author {
+	color: #888;
+	text-align: right;
+}
+
+a:link {
+	text-decoration: none;
+}
+h1 a:link, h1 a:visited {
+	color: #000;
+	display: block;
+}
+
+.flash_error, .login {
+	background-color: #FF8;
+	padding: 2px;
+	margin-bottom: 1em;
+}
+.flash_error {
+	font-weight: bold;
+	color: #F00;
+}

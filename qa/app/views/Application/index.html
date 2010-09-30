@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+#{set title:'Basic Knowledge Base' /}
+
+#{if user != null}
+<h2>Ask a new Question</h2>
+<form action="@{Application.addQuestion()}" method="POST">
+	<textarea id="newQuestion" name="newQuestion"></textarea>
+	<input type="submit" value="Ask the Question">
+</form>
+#{/if}
+#{else}
+<p class="login"><a href="@{Secure.login}">Log in for asking your own questions.</a></p>
+#{/else}
+
+#{list items: questions, as: 'question'}
+<div class="question">
+<div class="voteCount"><div class="count">${question.getVoteCount()}</div> votes</div>
+<div class="answerCount"><div class="count">${question.answerCount}</div> answers</div>
+<div class="content">
+	<a href="@{Application.showQuestion(question.id)}">${question.getContent()}</a>
+	<div class="author">by ${question.getOwner().getName()}, ${question.getTimestamp().since(false)}</div>
+</div>
+</div>
+#{/list}

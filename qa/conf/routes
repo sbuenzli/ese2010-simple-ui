@@ -1,0 +1,23 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Import Secure routes
+*		/										module:secure
+
+# Home page
+GET     /                                       Application.index
+POST	/addQuestion							Application.addQuestion
+
+GET		/question/{id}							Application.showQuestion
+POST	/question/{id}/addAnswer				Application.addAnswer
+GET		/question/{id}/voteUp					Application.voteUpQuestion
+GET		/question/{id}/voteDown					Application.voteDownQuestion
+GET		/question/{id}/voteUp/{aid}				Application.voteUpAnswer
+GET		/question/{id}/voteDown/{aid}			Application.voteDownAnswer
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

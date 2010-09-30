@@ -1,0 +1,51 @@
+#{extends 'main.html' /}
+#{if question.getContent().length() <= 20}
+#{set title: question.getContent() /}
+#{/if}
+#{else}
+#{set title: question.getContent().substring(0, 20) + "..." /}
+#{/else}
+
+<div class="question">
+<div class="voteCount"><div class="count">${question.getVoteCount()}</div> votes</div>
+<div class="content">
+	${question.getContent()}
+	<div class="author">by ${question.getOwner().getName()}, ${question.getTimestamp().since(false)}</div>
+#{if user != null && !user.equals(question.getOwner()) && question.getVoteFor(user) == null}
+	<div class="voteUpDown">
+	<a href="@{Application.voteUpQuestion(question.id)}">vote up</a>
+	<a href="@{Application.voteDownQuestion(question.id)}">vote down</a>
+	</div>
+#{/if}
+</div>
+</div>
+
+#{if user != null}
+<form action="@{Application.addAnswer(id)}" method="POST">
+	<textarea id="newAnswer" name="newAnswer"></textarea>
+	<input type="hidden" name="id" value="${id}">
+	<input type="submit" value="Answer the Question">
+</form>
+#{/if}
+#{else}
+<p class="login"><a href="@{Secure.login}">Log in for answering questions.</a></p>
+#{/else}
+
+#{list items:answers, as: 'answer'}
+<div class="answer">
+<div class="voteCount"><div class="count">${answer.getVoteCount()}</div> votes</div>
+<div class="content">
+	${answer.getContent()}
+	<div class="author">by ${answer.getOwner().getName()}, ${answer.getTimestamp().since(false)}</div>
+#{if user != null && !user.equals(answer.getOwner()) && answer.getVoteFor(user) == null}
+	<div class="voteUpDown">
+	<a href="@{Application.voteUpAnswer(id, answer.id)}">vote up</a>
+	<a href="@{Application.voteDownAnswer(id, answer.id)}">vote down</a>
+	</div>
+#{/if}
+</div>
+</div>
+#{/list}
+#{else}
+<p>&lt;Be the first to answer this question.&gt;</p>
+#{/else}
